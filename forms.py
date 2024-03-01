@@ -20,3 +20,11 @@ class AddPetForm(FlaskForm):
         validators=[InputRequired()]
     )
     notes = TextAreaField("Notes about Pet")
+
+
+class EditPetForm(FlaskForm):
+    """Form for editing pet information"""
+
+    photo_url = StringField("Picture of Pet", validators=[URL(), Optional()])
+    notes = TextAreaField("Notes about Pet")
+    available = BooleanField("Still Available?")
