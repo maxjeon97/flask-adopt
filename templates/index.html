@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 
+<h2>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-primary" role="alert">{{message}}</div>
+  {% endfor %}
+</h2>
+
 {% block title %}
-  Pets
+Pets
 {% endblock %}
 
 {% block content %}
-  {% for pet in pets %}
-    <div class="pet-info">
-      <img src="{{ pet.photo_url }}" alt="{{ pet.name }} {{ pet.species }}">
-      {% if pet.available %}
-        <p>{{ pet.name }} <b>is available!</b></p>
-      {% else %}
-        <p>{{ pet.name }} <b>is not available!</b></p>
-      {% endif %}
-    </div>
-  {% endfor %}
+{% for pet in pets %}
+<div class="pet-info">
+  <img src="{{ pet.photo_url }}" alt="{{ pet.name }} {{ pet.species }}">
+  {% if pet.available %}
+  <p>{{ pet.name }} <b>is available!</b></p>
+  {% else %}
+  <p>{{ pet.name }} <b>is not available!</b></p>
+  {% endif %}
+</div>
+{% endfor %}
+
+<a href="/add" class="btn btn-success">Add Pet</a>
+
 {% endblock %}
