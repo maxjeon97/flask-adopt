@@ -8,6 +8,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Pet
 from forms import AddPetForm, EditPetForm
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "secret"
@@ -25,6 +28,11 @@ connect_db(app)
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
+
+API_KEY = os.environ['API_KEY']
+API_SECRET = os.environ['API_SECRET']
+TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJYRmVhb1E3VjBPVjZGcTc4M2l0N2tyUVhzS204YllYemxCZXFGOVNjMkYxaW9nb21MMyIsImp0aSI6ImViNzU4ZjNmNTY5NTBkZjFkZGIzN2Q5ZGZiMjA5ZDA5ZmEzYWYyNmYxY2U1YTRlYWNiMzA0ODNjODE4MmZkNTdmYjZhOTFjNzVjZmQ2ZmYwIiwiaWF0IjoxNzA5MzM4NTMxLCJuYmYiOjE3MDkzMzg1MzEsImV4cCI6MTcwOTM0MjEzMSwic3ViIjoiIiwic2NvcGVzIjpbXX0.Qql_KCMn8tdC_1QNWdeixj7t7xqj4nwnvBFnWAB7PU8Waibcyjsx2kIBp4lnm8vBmq7VVnlkUFBIZuEVCiZLKAYLm7Q0ggG7F3vrtVXm4wXTCb4W-b-dYuF-YcVGZPUc1GoJLZFymAOgLf39F83Kuc9imaLZxBYwaKEqGD3mDoM9cMBq1j1dVs1TXg8d3HJzmqaVGke_NtS7ZUq6wEmLDG0Ao6QMGBkVFBjEqLACAx_6YZ6N1Foh8fNOpuJfOHvIvG_vH1AXUbysDUGJQzQ-_sfaUCelmjmln-jNDN6NjGVSEUjvINbJOmDvtk6orLFACrBkfsboAxOEImcQUnTKeQ'
+URL = 'https://api.petfinder.com/v2/animals'
 
 @app.get('/')
 def show_homepage():
