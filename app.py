@@ -11,6 +11,8 @@ from forms import AddPetForm, EditPetForm
 from dotenv import load_dotenv
 load_dotenv()
 
+from petfinder import update_auth_token_string, get_pet_finder_info
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "secret"
@@ -35,7 +37,11 @@ toolbar = DebugToolbarExtension(app)
 def show_homepage():
     """ Renders homepage """
     pets = Pet.query.all()
-    return render_template('index.html', pets=pets)
+
+    token = update_auth_token_string()
+    pet_info = get_pet_finder_info(token)
+
+    return render_template('index.html', pets=pets, pet_info = pet_info)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_pet():
