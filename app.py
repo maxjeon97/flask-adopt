@@ -28,6 +28,7 @@ toolbar = DebugToolbarExtension(app)
 
 @app.get('/')
 def show_homepage():
+    """ Renders homepage """
     pets = Pet.query.all()
     return render_template('index.html', pets=pets)
 

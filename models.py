@@ -51,6 +51,7 @@ class Pet(db.Model):
         db.Text,
         default=""
     )
+    # TODO:nullable
 
     available = db.Column(
         db.Boolean,
